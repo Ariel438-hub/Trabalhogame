@@ -10,7 +10,7 @@ print("Inicializando o Jogo! Criado por Marcão")
 print("Aperte Enter para iniciar o jogo")
 pygame.init()
 inicializarBancoDeDados()
-tamanho = (800,600)
+tamanho = (1000,700)
 relogio = pygame.time.Clock()
 tela = pygame.display.set_mode( tamanho ) 
 pygame.display.set_caption("base")
@@ -18,11 +18,11 @@ icone  = pygame.image.load("base trabalho game/assets/icone.png")
 pygame.display.set_icon(icone)
 branco = (255,255,255)
 preto = (0, 0 ,0 )
-iron = pygame.image.load("base trabalho game/assets/iron.png")
-fundoStart = pygame.image.load("base trabalho game/assets/fundoStart.jpg")
-fundoJogo = pygame.image.load("base trabalho game/assets/fundoJogo.png")
-fundoDead = pygame.image.load("base trabalho game/assets/fundoDead.png")
-missel = pygame.image.load("base trabalho game/assets/missile.png")
+ninja = pygame.image.load("base trabalho game/assets/ninja.png")
+fundoStart = pygame.image.load("base trabalho game/assets/inicioJogo.png")
+fundoJogo = pygame.image.load("base trabalho game/assets/fundoJogo.jpeg")
+fundoDead = pygame.image.load("base trabalho game/assets/fundoDead.jpeg")
+missel = pygame.image.load("base trabalho game/assets/kunai.png")
 missileSound = pygame.mixer.Sound("base trabalho game/assets/missile.wav")
 explosaoSound = pygame.mixer.Sound("base trabalho game/assets/explosao.wav")
 fonteMenu = pygame.font.SysFont("comicsans",18)
@@ -64,8 +64,8 @@ def jogar():
     root.mainloop()
     
 
-    posicaoXPersona = 400
-    posicaoYPersona = 300
+    posicaoXPersona = 500
+    posicaoYPersona = 100
     movimentoXPersona  = 0
     movimentoYPersona  = 0
     posicaoXMissel = 400
@@ -74,10 +74,10 @@ def jogar():
     pygame.mixer.Sound.play(missileSound)
     pygame.mixer.music.play(-1)
     pontos = 0
-    larguraPersona = 250
-    alturaPersona = 127
-    larguaMissel  = 50
-    alturaMissel  = 250
+    larguraPersona = 200
+    alturaPersona = 250
+    larguaMissel  = 100
+    alturaMissel  = 152
     dificuldade  = 30
     while True:
         for evento in pygame.event.get():
@@ -105,8 +105,8 @@ def jogar():
         
         if posicaoXPersona < 0 :
             posicaoXPersona = 15
-        elif posicaoXPersona >550:
-            posicaoXPersona = 540
+        elif posicaoXPersona >790:
+            posicaoXPersona = 780
             
         if posicaoYPersona < 0 :
             posicaoYPersona = 15
@@ -117,14 +117,14 @@ def jogar():
         tela.fill(branco)
         tela.blit(fundoJogo, (0,0) )
         
-        tela.blit( iron, (posicaoXPersona, posicaoYPersona) )
+        tela.blit( ninja, (posicaoXPersona, posicaoYPersona) )
         
         posicaoYMissel = posicaoYMissel + velocidadeMissel
-        if posicaoYMissel > 600:
+        if posicaoYMissel > 700:
             posicaoYMissel = -240
             pontos = pontos + 1
             velocidadeMissel = velocidadeMissel + 1
-            posicaoXMissel = random.randint(0,800)
+            posicaoXMissel = random.randint(0,1000)
             pygame.mixer.Sound.play(missileSound)
             
             
