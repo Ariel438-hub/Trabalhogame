@@ -23,11 +23,12 @@ fundoStart = pygame.image.load("base trabalho game/assets/inicioJogo.png")
 fundoJogo = pygame.image.load("base trabalho game/assets/fundoJogo.jpeg")
 fundoDead = pygame.image.load("base trabalho game/assets/fundoDead.jpeg")
 missel = pygame.image.load("base trabalho game/assets/kunai.png")
-missileSound = pygame.mixer.Sound("base trabalho game/assets/missile.wav")
-explosaoSound = pygame.mixer.Sound("base trabalho game/assets/explosao.wav")
+kunaiSound = pygame.mixer.Sound("base trabalho game/assets/somkunai.mp3")
+gameoverSound = pygame.mixer.Sound("base trabalho game/assets/gameOver.mp3")
 fonteMenu = pygame.font.SysFont("comicsans",18)
 fonteMorte = pygame.font.SysFont("arial",120)
-pygame.mixer.music.load("base trabalho game/assets/ironsound.mp3")
+pygame.mixer.music.load("base trabalho game/assets/musicaNinja.mp3")
+
 
 def jogar():
     largura_janela = 300
@@ -71,7 +72,7 @@ def jogar():
     posicaoXMissel = 400
     posicaoYMissel = -240
     velocidadeMissel = 1
-    pygame.mixer.Sound.play(missileSound)
+    pygame.mixer.Sound.play(kunaiSound)
     pygame.mixer.music.play(-1)
     pontos = 0
     larguraPersona = 200
@@ -125,7 +126,12 @@ def jogar():
             pontos = pontos + 1
             velocidadeMissel = velocidadeMissel + 1
             posicaoXMissel = random.randint(0,1000)
-            pygame.mixer.Sound.play(missileSound)
+            pygame.mixer.Sound.play(kunaiSound)
+            
+            
+     
+                
+
             
             
         tela.blit( missel, (posicaoXMissel, posicaoYMissel) )
@@ -206,7 +212,7 @@ def start():
 
 def dead():
     pygame.mixer.music.stop()
-    pygame.mixer.Sound.play(explosaoSound)
+    pygame.mixer.Sound.play(gameoverSound)
     larguraButtonStart = 150
     alturaButtonStart  = 40
     larguraButtonQuit = 150
@@ -275,7 +281,8 @@ def dead():
 
         pygame.display.update()
         relogio.tick(60)
-
+ 
 
 start()
+
 
