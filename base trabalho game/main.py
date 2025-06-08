@@ -18,7 +18,7 @@ inicializarBancoDeDados()
 tamanho = (1000,700)
 relogio = pygame.time.Clock()
 tela = pygame.display.set_mode( tamanho ) 
-pygame.display.set_caption("base")
+pygame.display.set_caption("NinjaX")
 
 icone  = pygame.image.load("base trabalho game/assets/icone.png")
 pygame.display.set_icon(icone)
@@ -241,7 +241,7 @@ def jogar():
         objeto_redimensionado = pygame.transform.scale(objeto, (tamanho_pulso, tamanho_pulso))
 
         # Desenha no canto superior direito
-        pos_x = tamanho[0] - tamanho_pulso - 10 # 10px de margem da direita
+        pos_x = tamanho[0] - tamanho_pulso - 10
         pos_y = 10
             
         tela.fill(branco)
@@ -280,7 +280,7 @@ def jogar():
         if  len( list( set(pixelskunaiY).intersection(set(pixelsPersonaY))) ) > dificuldade:
             if len(list(set(pixelskunaiX).intersection(set(pixelsPersonaX)))) > dificuldade:
                 from recursos.funcoes import escreverDados
-                escreverDados(nome, pontos)  # salva no arquivo!
+                escreverDados(nome, pontos)  
                 dead()
 
                 
@@ -316,14 +316,12 @@ def start():
             elif evento.type == pygame.MOUSEBUTTONUP:
                 # Verifica se o clique foi dentro do retângulo
                 if startButton.collidepoint(evento.pos):
-                    #pygame.mixer.music.play(-1)
                     larguraButtonStart = 150
                     alturaButtonStart  = 40
                     obter_nome()
                     boas_vindas(nome)
                     jogar()
                 if quitButton.collidepoint(evento.pos):
-                    #pygame.mixer.music.play(-1)
                     larguraButtonQuit = 150
                     alturaButtonQuit  = 40
                     quit()
