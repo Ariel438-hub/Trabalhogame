@@ -10,9 +10,14 @@ from datetime import datetime
 import json
 import speech_recognition as sr
 import pyttsx3
-
+import sys
+def recurso(rel_path):
+    if getattr(sys, 'frozen', False):
+        base_path = sys.executable if os.path.isdir(sys.executable) else os.path.dirname(sys.executable)
+    else:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, rel_path)
 print("Inicializando o Jogo! Criado por Ariel!")
-print("Aperte Enter para iniciar o jogo")
 pygame.init()
 inicializarBancoDeDados()
 tamanho = (1000,700)
@@ -20,22 +25,22 @@ relogio = pygame.time.Clock()
 tela = pygame.display.set_mode( tamanho ) 
 pygame.display.set_caption("NinjaX")
 
-icone  = pygame.image.load("base/assets/icone.png")
+icone  = pygame.image.load(recurso("assets/icone.png"))
 pygame.display.set_icon(icone)
 branco = (255,255,255)
 preto = (0, 0 ,0 )
-ninja = pygame.image.load("base/assets/ninja.png")
-fundoStart = pygame.image.load("base/assets/inicioJogo.png")
-fundoJogo = pygame.image.load("base/assets/fundoJogo.jpeg")
-fundoDead = pygame.image.load("base/assets/fundoDead.jpeg")
-kunai = pygame.image.load("base/assets/kunai.png")
-shuriken = pygame.image.load("base/assets/shuriken.png")
-objeto = pygame.image.load("base/assets/icone.png")
-kunaiSound = pygame.mixer.Sound("base/assets/somkunai.mp3")
-gameoverSound = pygame.mixer.Sound("base/assets/gameOver.mp3")
+ninja = pygame.image.load(recurso("assets/ninja.png"))
+fundoStart = pygame.image.load(recurso("assets/inicioJogo.png"))
+fundoJogo = pygame.image.load(recurso("assets/fundoJogo.jpeg"))
+fundoDead = pygame.image.load(recurso("assets/fundoDead.jpeg"))
+kunai = pygame.image.load(recurso("assets/kunai.png"))
+shuriken = pygame.image.load(recurso("assets/shuriken.png"))
+objeto = pygame.image.load(recurso("assets/icone.png"))
+kunaiSound = pygame.mixer.Sound(recurso("assets/somkunai.mp3"))
+gameoverSound = pygame.mixer.Sound(recurso("assets/gameOver.mp3"))
 fonteMenu = pygame.font.SysFont("comicsans",18)
 fonteMorte = pygame.font.SysFont("arial",120)
-pygame.mixer.music.load("base/assets/musicaNinja.mp3")
+pygame.mixer.music.load(recurso("assets/musicaNinja.mp3"))
 nome = ""
 engine = pyttsx3.init()
 engine.setProperty('rate', 150)
@@ -143,10 +148,9 @@ def exibir_logs_na_tela(tela, fonte, dados):
 
         logs_formatados.append(f"{nick} - {pontos} pts em {data} às {hora}")
 
-   # Pega apenas os últimos 5 logs
     ultimos_logs = logs_formatados[-5:]
 
-    # Exibir na tela
+    
     y = 500
     for log in ultimos_logs:
         texto = fonte.render(log, True, (255, 255, 255))
@@ -166,7 +170,7 @@ def pausar_jogo(temporizador):
                     pausado = False
                     pygame.mixer.music.unpause()  # retoma música
                     temporizador.continuar()
-        tela.fill((50, 50, 50))  # fundo escuro para tela de pausa
+        tela.fill((50, 50, 50))  
         texto_pausa = fonteMorte.render("PAUSADO", True, (255, 255, 255))
         subtexto = fonteMenu.render("Pressione ESPAÇO para continuar", True, (255, 255, 255))
         tela.blit(texto_pausa, (tamanho[0]//2 - 300, tamanho[1]//4 + 100))

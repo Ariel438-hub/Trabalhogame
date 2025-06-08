@@ -1,13 +1,14 @@
 import cx_Freeze
 import os
 
-# Define o nome do seu script principal
 executaveis = [
     cx_Freeze.Executable(
         script="main.py",
-        icon="/assets/NinjaX.ico"
+        icon="assets/NinjaX.ico"
     )
 ]
+
+include_arquivos = [("assets", "assets")]
 
 cx_Freeze.setup(
     name="NinjaX",
@@ -16,10 +17,10 @@ cx_Freeze.setup(
     options={
         "build_exe": {
             "packages": ["pygame", "os"],
-            "include_files": [
-                "base trabalho game/assets/",        
-                "recursos/"       
-            ]
+            "includes": ["audioop", "aifc", "chunk", "speech_recognition","pyttsx3.drivers.sapi5"],
+            "include_files": include_arquivos,
+            "zip_include_packages": [],
+            "zip_exclude_packages": ["pygame"]  # evita colocar seu jogo no .zip
         }
     },
     executables=executaveis
