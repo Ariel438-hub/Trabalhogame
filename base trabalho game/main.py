@@ -5,10 +5,6 @@ import tkinter as tk
 from tkinter import messagebox
 from recursos.funcoes import inicializarBancoDeDados
 from recursos.funcoes import escreverDados
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-
 from recursos.temporizador import Temporizador
 from datetime import datetime
 import json
@@ -157,7 +153,8 @@ def exibir_logs_na_tela(tela, fonte, dados):
         tela.blit(texto, (50, y))
         y += 30
 
-def pausar_jogo():
+def pausar_jogo(temporizador):
+    temporizador.pausar()
     pygame.mixer.music.pause()  # pausa música
     pausado = True
     while pausado:
@@ -168,7 +165,7 @@ def pausar_jogo():
                 if evento.key == pygame.K_SPACE:
                     pausado = False
                     pygame.mixer.music.unpause()  # retoma música
-
+                    temporizador.continuar()
         tela.fill((50, 50, 50))  # fundo escuro para tela de pausa
         texto_pausa = fonteMorte.render("PAUSADO", True, (255, 255, 255))
         subtexto = fonteMenu.render("Pressione ESPAÇO para continuar", True, (255, 255, 255))
@@ -217,7 +214,7 @@ def jogar():
                 movimentoXPersona = 0
             elif evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_SPACE:
-                    pausar_jogo()
+                    pausar_jogo(temporizador)
                  
         posicaoXPersona = posicaoXPersona + movimentoXPersona            
         posicaoYPersona = posicaoYPersona + movimentoYPersona            
