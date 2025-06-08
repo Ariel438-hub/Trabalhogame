@@ -16,7 +16,7 @@ def recurso(rel_path):
         base_path = sys.executable if os.path.isdir(sys.executable) else os.path.dirname(sys.executable)
     else:
         base_path = os.path.abspath(".")
-    return os.path.join(base_path, rel_path)
+    return os.path.join(base_path, rel_path)  
 print("Inicializando o Jogo! Criado por Ariel!")
 pygame.init()
 inicializarBancoDeDados()
