@@ -5,6 +5,10 @@
 **Aluno:** Ariel David de Almeida Chaves  
 **RA:** 1136093
 
+## TESTADOR DO JOGO
+RA:1138099
+NOME:Arthur Risson
+
 ## 📖 História do Jogo
 
 Em um reino tomado pelas sombras, um jovem ninja descobre que seu clã foi destruído por forças misteriosas lideradas por um antigo traidor. Agora, sozinho, ele parte em uma jornada repleta de perigos para recuperar os artefatos sagrados do clã e restaurar a honra dos guerreiros esquecidos.  
