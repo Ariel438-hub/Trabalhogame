@@ -10,6 +10,8 @@ RA:1138099
 NOME:Arthur Risson
 RA:1138670
 NOME:Diogo Sartorelli
+RA:1136543
+NOME:Gabriel Dal Magro
 
 ## 📖 História do Jogo
 
